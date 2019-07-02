@@ -1,0 +1,27 @@
+﻿@page
+@model CollegeFind.Pages.Colleges.ListModel
+@{
+}
+<h1>College Info.</h1>
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" placeholder="Enter College & City & Department Name.."
+                   class="form-control" asp-for="SearchTerm" /> @*value="" name="searchTerm" asp-for is new add
+                after remove value and name attribute*@
+                <span class="input-group-btn">
+                    <button class="btn btn-default">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </form>
+    @foreach (var college in Model.Colleges)
+    {
+        <partial name="_Summary" model="college" />
+    }
+    <a asp-page=".\Edit" class="btn btn-danger">Add New</a>
+    @section footer{
+        <div>@Model.Message</div>
+    }

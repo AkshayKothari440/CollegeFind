@@ -1,0 +1,15 @@
+﻿@page
+@model CollegeFind.Pages.Colleges.DeleteModel
+@{
+        ViewData["Title"] = "Delete";
+
+}
+    <h2>
+        <div class="alert alert-danger"
+             Are You Sure Want To Delete @Model.College.Name ?>
+        </div>
+        <form method="post">
+            <button type="submit" class="btn btn-danger">Yes!</button>
+            <a asp-page="List" class="btn btn-default">Cancle</a>
+        </form>
+    </h2>

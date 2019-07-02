@@ -1,0 +1,20 @@
+﻿@page
+@model CollegeFind.Pages.Colleges.DetailModel
+@{
+}
+
+<h2>@Model.College.Name</h2>     @*Model class Restaurant property Display the Name*@
+<div>
+    Id: @Model.College.Id
+</div>
+<div>
+    Location: @Model.College.Location
+</div>
+<div>
+    Cusine: @Model.College.Cuisine
+</div>
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+<a asp-page="./List" class="btn btn-default">All Colleges</a>

@@ -1,0 +1,33 @@
+﻿@page
+@model CollegeFind.Pages.Colleges.EditModel
+@{
+    ViewData["Title"] = "Edit";
+
+}
+<h2>Edit @Model.College.Name</h2>
+<form method="post">
+    <input type="hidden" asp-for="College.Id" />
+    <div class="form-group">
+        <label asp-for="College.Name"></label>
+        <input asp-for="College.Name" class="form-control" />
+        <span clss="text-danger" asp-validation-for="College.Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="College.Location"></label>
+        <input asp-for="College.Location" class="form-control" />
+        <span clss="text-danger" asp-validation-for="College.Location"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="College.Cuisine"></label>
+        <select class="form-control" asp-for="College.Cuisine"
+                asp-items="Model.Cuisines">
+            @*asp-items="Html.GetEnumSelectList<Restaurant.CuisineType>()"*@
+        </select>
+        <span clss="text-danger" asp-validation-for="College.Cuisine"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

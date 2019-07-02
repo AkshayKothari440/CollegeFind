@@ -1,0 +1,48 @@
+﻿@page
+@model CollegeFind.Pages.Colleges.ClientCollegesModel
+@{
+    ViewData["Title"] = "ClientColleges";
+}
+<h2>Colleges</h2>
+<table class="table" id="colleges"></table>
+@section Scripts{
+    <environment include="Development">
+        <script src="~/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+        <link href="~/node_modules/datatables.net-bs/css/dataTables.bootstrap.css" rel="stylesheet" />
+        <script src="~/node_modules/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+        @*<script src="~/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+            <script src="~/node_modules/datatables.net-bs/js/dataTables.bootstrap.js"></script>
+            <link href="~/node_modules/datatables.net-bs/css/dataTables.bootstrap.css" rel="stylesheet" />*@
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css" />
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.js"></script>
+    </environment>
+    <script>
+    $(function () {
+        var cuisines = ["Indian", "IT",
+        "ComputerEngineering",
+        "BBA",
+        "MBA",
+        "BCA",
+        "MCA"]
+        $.ajax("/api/colleges/",
+            { method:"get" })
+            .then(function (response) {
+                $("#colleges").dataTable({
+                    data: response,
+                    columns: [
+                        { "data": "name" },
+                        { "data": "location" },
+                        {
+                            "data": "cuisine", "render": function (data) {
+                                return cuisines[data];
+                            }
+                            }
+                    ]
+                });
+            });
+
+    });
+    </script>
+}
